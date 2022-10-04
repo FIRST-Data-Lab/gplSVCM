@@ -1,32 +1,13 @@
 rm(list = ls())
 
+# library(devtools)
+# install_github("funstatpackages/gplSVCM")
 library(gplSVCM)
-library(BPST)
-library(Triangulation)
-library(parallel)
-library(mgcv)
-library(MASS)
-library(MGLM)
-library(prodlim)
-library(ggplot2)
-library(colorRamps)
-
-source("dat.generator.R")
-source("mfit.gplsvcm.R")
-source("mfit.gsvcm.R")
-source("fit.gplsvcm.worker.R")
-source("fit.gplsvcm.R")
-source("ring.R")
-source("predict.gplsvcm.R")
-source("plot.gplsvcm.R")
-source("ZZ.func.R")
-source("subdata.R")
-source("dat.dc.R")
 
 ######################################################################
 data("V.2"); data("Tr.2")
 V = V.2; Tr = Tr.2
-TriPlot(V, Tr)
+Triangulation::TriPlot(V, Tr)
 
 d <- 2; r <- 1
 
@@ -50,11 +31,11 @@ Z <- cbind(dat$z1, dat$z2, dat$z3)
 S <- cbind(dat$s1, dat$s2)
 
 t0 <- proc.time()
-mfit <- fit.gplsvcm(V, Tr, d, r, 
-                    Y = Y, X = X, Z = Z, S = S, 
-                    family = family, 
-                    n.layer = n.layer, 
-                    se = TRUE, 
+mfit <- fit.gplsvcm(V, Tr, d, r,
+                    Y = Y, X = X, Z = Z, S = S,
+                    family = family,
+                    n.layer = n.layer,
+                    se = TRUE,
                     ns = ns)
 t1 <- proc.time() - t0
 # Estimated constant effects and its variance
@@ -84,4 +65,4 @@ beta.true <- beta.func(S.grid, V, Tr)
 apply((beta.pred - beta.true)^2, 2, mean, na.rm = TRUE)
 
 # plots of estimated coefficient functions
-plot.gplsvcm(mfit, S.grid = S.grid)
+plots.gplsvcm(mfit, S.grid = S.grid)
