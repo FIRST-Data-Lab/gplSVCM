@@ -1,0 +1,25 @@
+Package: gplSVCM
+Type: Package
+Title: Generalized Partially Linear Spatial Varying Coefficient Models
+Version: 1.0.0
+Author: Lily Wang, Shan Yu, GuanNan Wang
+Maintainer: Shan Yur <sy5jx@virginia.edu>, GuanNan Wang <gwang01@wm.edu>
+Description: This package provides a novel parallel spline smoothing technique based on divide-and-conquer and domain decomposition for generalized partially linear spatially varying coefficient models (gplSVCM).
+License: GPL (>= 2)
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.2.0
+Depends: 
+    R (>= 2.10),
+    BPST,
+    colorRamps,
+    ggplot2,
+    parallel
+Imports: 
+    MASS,
+    Matrix,
+    mgcv,
+    MGLM,
+    prodlim,
+    stats,
+    Triangulation
